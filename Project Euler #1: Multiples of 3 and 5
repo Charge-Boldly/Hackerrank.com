@@ -1,0 +1,28 @@
+#!/bin/python3
+
+import sys  # Ensure sys is imported
+
+# Function to calculate the sum of multiples of k below N
+def sum_of_multiples(k, N):
+    p = (N - 1) // k  # Number of multiples of k below N
+    return k * p * (p + 1) // 2  # Sum formula
+
+# Input: Number of test cases
+t = int(input().strip())
+
+# Results to store the output for each test case
+results = []
+
+# Process each test case
+for _ in range(t):
+    n = int(input().strip())
+    # Calculate the result using the formula
+    result = (
+        sum_of_multiples(3, n) + 
+        sum_of_multiples(5, n) - 
+        sum_of_multiples(15, n)
+    )
+    results.append(result)
+
+# Output all results at once for faster execution
+sys.stdout.write("\n".join(map(str, results)) + "\n")
