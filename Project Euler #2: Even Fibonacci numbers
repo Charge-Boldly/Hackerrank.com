@@ -1,0 +1,33 @@
+#!/bin/python3
+
+import sys
+
+# Precompute all even Fibonacci numbers up to a given limit
+def precompute_even_fib(limit):
+    even_fibs = []
+    # Start with the first two even Fibonacci numbers
+    a, b = 2, 8
+    while a <= limit:
+        even_fibs.append(a)
+        a, b = b, 4 * b + a  # Generate the next even Fibonacci term
+    return even_fibs
+
+# Read input
+t = int(input().strip())
+test_cases = [int(input().strip()) for _ in range(t)]
+
+# Find the maximum N from the test cases
+max_n = max(test_cases)
+
+# Precompute even Fibonacci numbers up to max_n
+even_fibs = precompute_even_fib(max_n)
+
+# Process each test case
+results = []
+for n in test_cases:
+    # Compute the sum of even Fibonacci numbers <= n
+    result = sum(x for x in even_fibs if x <= n)
+    results.append(result)
+
+# Output the results
+sys.stdout.write("\n".join(map(str, results)) + "\n")
